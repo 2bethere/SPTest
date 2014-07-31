@@ -1,0 +1,17 @@
+{% extends 'bootstrap3/bootstrap3.html' %}
+{% load url from future %}
+
+{% load bootstrap3 %}
+{% block bootstrap3_title %}Spoton test{% endblock %}
+
+{% block bootstrap3_content %}
+    <div class="container">
+    <h3>Spoton - {% block pagetitle %}{% endblock %}</h3>
+    <ul class="nav nav-tabs" role="tablist">
+        <li><a href="{% url 'sitelist' %}">Sites</a></li>
+        <li><a href="{% url 'joblist' %}">Jobs</a></li>
+        <li><a href="{% url 'eventlist' %}">Events</a></li>
+    </ul>
+    {% block content %}{% endblock %}
+    </div>
+{% endblock %}

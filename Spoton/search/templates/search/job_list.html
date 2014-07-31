@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block pagetitle %}Jobs{% endblock %}
+
+{% block content %}
+    <p class="lead">All the jobs that's been scheduled</p>
+    <table class="table table-hover">
+        <thead><tr><th>Job ID</th><th>Job State</th><th>Domain</th><th>Start URL</th><th>Page limit</th></tr></thead>
+        {% for o in object_list %}
+            <tr>
+                <td>{{ o.queueid }}</td>
+                <td>{{ o.state }}</td>
+                <td>{{ o.site.domain }}</td>
+                <td>{{ o.start_url }}</td>
+                <td>{{ o.pagelimit }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form action="{% url 'jobform' %}">
+        <button type="submit" class="btn btn-primary" >Create new job</button>
+    </form>
+{% endblock %}

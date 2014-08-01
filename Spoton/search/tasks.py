@@ -9,6 +9,8 @@ from twisted.internet import reactor
 from billiard import Process
 from scrapy.utils.project import get_project_settings
 from models import Site
+from django.db.utils import InterfaceError
+from django import db
 
 
 class UrlCrawlerScript(Process):
@@ -34,6 +36,10 @@ def run_spider(name="boston", allowed_domains={}, start_urls={}, pagelimit=100):
     crawler = UrlCrawlerScript(spider)
     siteobj = Site.objects.filter(domain=allowed_domains[0])[0]
     siteobj.last_update = datetime.datetime.utcnow()
-    siteobj.save()
+    try:
+        siteobj.save()
+    except InterfaceError:
+        db.connection.close()
+        siteobj.save()
     crawler.start()
     crawler.join()

@@ -7,6 +7,8 @@ from ..items import SspiderItem
 from ..models import Site, Event
 from celery.utils.log import get_task_logger
 from scrapy.linkextractor import IGNORED_EXTENSIONS
+from django.db.utils import InterfaceError
+from django import db
 
 
 
@@ -66,7 +68,12 @@ class CSpider(scrapy.Spider):
                 item['title'] = sel.xpath('/html/head/title/text()').extract()[0].encode('UTF-8', 'ignore').strip()[:199]
                 print("Length")
                 print(len(item['title']))
-                item.save()
+                try:
+                    item.save()
+                except InterfaceError:
+                    db.connection.close()
+                    item.save()
+
                 self.count -= 1
 
                 print(self.count)

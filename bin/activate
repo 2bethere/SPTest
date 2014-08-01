@@ -39,7 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/dev/Documents/pyproject/SpotonTest"
+VIRTUAL_ENV="/home/ubuntu/SPTest"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

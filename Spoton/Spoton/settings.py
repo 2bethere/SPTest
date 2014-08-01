@@ -63,9 +63,9 @@ WSGI_APPLICATION = 'Spoton.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'spoton',
-        'USER': 'dev',
-        'PASSWORD': '123456',
+        'NAME': 'spotontest',
+        'USER': 'spotontest',
+        'PASSWORD': '1Qaz2wsx',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

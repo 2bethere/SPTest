@@ -1,4 +1,4 @@
-#!/Users/dev/Documents/pyproject/SpotonTest/bin/python
+#!/home/ubuntu/SPTest/bin/python
 
 from scrapy.cmdline import execute
 execute()
